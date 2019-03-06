@@ -7,8 +7,6 @@
   (str (color-letter color) index " "))
 
 (defn render-list [pawns]
-  (if pawns
-    (->>
-      (map rendered pawns)
-      (str/join ","))
-    "NONE"))
+  (->>
+    (map rendered pawns)
+    (str/join ",")))

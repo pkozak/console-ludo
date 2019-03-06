@@ -5,10 +5,11 @@
 
 (defn rendered [game, {player :player, cube :cube, movable-pawns :movable-pawns}]
   (str/join "\n"
-    [(BOARD/rendered game)
-     (str "PLAYER: " (get player :color))
-     (str "CUBE: " cube)
-     (str "PAWNS: " (UI-PAWN/render-list movable-pawns))]))
+    (remove nil? [(BOARD/rendered game)
+                  (str "PLAYER: " (get player :color))
+                  (str "CUBE: " cube)
+                  (when (seq movable-pawns)
+                    (str "PAWNS: " (UI-PAWN/render-list movable-pawns)))])))
 
 (defn display [game movement]
   (println (rendered game movement)))
